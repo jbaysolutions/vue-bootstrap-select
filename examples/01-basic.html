@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Vue Bootstrap Select Demo</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Vue Bootstrap Select Demo</h1>
+        <div id="app">
+            <div class="row">
+                <div class="col-sm-12">
+
+                </div>
+                <br/><br/>
+                <vue-bootstrap-select      ref="exampleSelect1"
+                        :btnstyle=style
+                        :list=dataList
+                        :selected=select
+                >
+                </vue-bootstrap-select>
+            </div>
+            <h2>Events Received</h2>
+            <div>
+                <!--{{ logging }}-->
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.js"></script>
+    <script src="../dist/vue-bootstrap-select.js"></script>
+    <script src="01-basic.js"></script>
+</body>
+</html>
