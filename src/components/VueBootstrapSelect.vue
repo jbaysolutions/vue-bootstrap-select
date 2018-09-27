@@ -113,15 +113,15 @@
                 return input === this.selectedFinal;
             },
             selectThis(input) {
-                console.log("### select this => " + input);
+                // console.log("### select this => " + input);
                 this.$emit('update:selected', input);
                 this.selectedFinal = input;
                 //this.setCurrentSchema(input);
-                $(this.$refs.dropdown).dropdown("toggle");
+                // $(this.$refs.dropdown).dropdown("toggle");
                 this.tableFilter = "";
             },
             selectCurrent() {
-                console.log("### select current => " + this.selectedFinal);
+                // console.log("### select current => " + this.selectedFinal);
                 this.$emit('update:selected', this.selectedFinal);
                 //this.selected = this.selectedFinal;
                 //this.setCurrentSchema(this.selected);
