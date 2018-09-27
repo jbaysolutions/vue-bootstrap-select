@@ -8,7 +8,7 @@
                   aria-expanded="false"
                   v-on:click="focusFilter"
                   ref="dropdown">
-              {{ selectedFinal }}
+              {{ selected }}
               <span v-show="selected===''" style="font-style: italic;font-size: smaller"> Select </span>
           </button>
           <ul class="dropdown-menu"
@@ -30,14 +30,14 @@
                          v-on:keyup.enter="selectCurrent"
                   >
               </li>
-              <li v-for="item in filteredData"
-                                  :class="getActiveClasses(item)"
-                                  :value="item"
-                                  v-on:keydown="keyFocusFilter"
-                                  v-on:keydown.down="selectNext"
-                                  v-on:keydown.up="selectPrev"
-                                  v-on:keydown.esc="hide"
-                                  v-on:click="selectThis(item)">
+              <li v-for="item in filteredData" :key="item"
+                      :class="getActiveClasses(item)"
+                      :value="item"
+                      v-on:keydown="keyFocusFilter"
+                      v-on:keydown.down="selectNext"
+                      v-on:keydown.up="selectPrev"
+                      v-on:keydown.esc="hide"
+                      v-on:click="selectThis(item)">
                   <a  class="dropdown-item" href="#">{{item}}</a>
               </li>
           </ul>
@@ -51,46 +51,52 @@
 <script>
 
     /* used for fixing IE problems*/
-    import { polyfill } from 'es6-promise'; polyfill();
+    // import { polyfill } from 'es6-promise'; polyfill();
     import lodashincludes from 'lodash.includes';
-    import bootstrap from 'bootstrap';
+    // import bootstrap from 'bootstrap';
     import $ from 'jquery';
 
 
     export default {
-        name: "VueSelectSchemas",
+        name: "VueBootstrapSelect",
         props: {
             btnstyle: {
                 type: String,
                 default: "btn-default",
                 required: false
             },
-            selected: String,  // immutable
-            list: Array
+            selected: {
+                type: String,
+                required: true,
+            },  // immutable
+            list: {
+                type: Array,
+                required: true,
+            }
         },
         data: function () {
             return {
-                selectedFinal:'', 
+                selectedFinal:'',
                 tableFilter:'',
             };
         },
-        mounted: function () {
+        mounted() {
             this.selectedFinal = this.selected;
         },
         watch: {
-            selected:function() {
+            selected() {
                 this.selectedFinal = this.selected;
             },
-            list: function() {
+            list() {
             },
         },
         computed: {
             filteredData: function() {
                 if (this.tableFilter === undefined || this.tableFilter ===null || this.tableFilter.trim()==='' )
                     return this.list;
-                var tempList = [];
-                for(var i=0, len=this.list.length; i < len; i++){
-                    if ( lodashincludes( this.list[i].toLowerCase(), this.tableFilter.toLowerCase()) ) {
+                let tempList = [];
+                for(let i=0, len=this.list.length; i < len; i++){
+                    if (lodashincludes( this.list[i].toLowerCase(), this.tableFilter.toLowerCase()) ) {
                         tempList.push( this.list[i] );
                     }
                 }
@@ -103,18 +109,20 @@
                     return this.btnstyle;
                 else return '';
             },
-            isSelected: function (input) {
+            isSelected(input) {
                 return input === this.selectedFinal;
             },
-            selectThis: function(input) {
-                // console.log("### select this => " + input);
+            selectThis(input) {
+                console.log("### select this => " + input);
+                this.$emit('update:selected', input);
                 this.selectedFinal = input;
                 //this.setCurrentSchema(input);
                 $(this.$refs.dropdown).dropdown("toggle");
                 this.tableFilter = "";
             },
             selectCurrent() {
-                // console.log("### select current => " + this.selectedFinal);
+                console.log("### select current => " + this.selectedFinal);
+                this.$emit('update:selected', this.selectedFinal);
                 //this.selected = this.selectedFinal;
                 //this.setCurrentSchema(this.selected);
                 $(this.$refs.dropdown).dropdown("toggle");
@@ -122,7 +130,7 @@
             },
             focusFilter: function() {
                 this.$nextTick(() => {
-                    console.log("FOCUS");
+                    // console.log("FOCUS");
                     this.$refs.tableFilter.focus();
                 });
             },
@@ -141,12 +149,12 @@
                 let index = 0;
                 if (this.selectedFinal !== undefined && this.index !== null) {
                     const self = this;
-                    index = this.filteredData.findIndex((item) => item.value === self.selectedFinal);
+                    index = this.filteredData.findIndex((item) => item === self.selectedFinal);
                 }
                 index++;
                 // console.log("### select next " + index);
                 if (index < this.filteredData.length) {
-                    this.selectedFinal = this.filteredData[index].value;
+                    this.selectedFinal = this.filteredData[index];
                     this.$nextTick(() => {
                         $(this.$el).find(".dropdown-menu li."+this.btnstyle+" a").focus()
                     });
@@ -156,12 +164,12 @@
                 let index = 0;
                 if (this.selectedFinal !== undefined && this.index !== null) {
                     const self = this;
-                    index = this.filteredData.findIndex((item) => item.value === self.selectedFinal);
+                    index = this.filteredData.findIndex((item) => item === self.selectedFinal);
                 }
                 index--;
                 // console.log("### select prev " + index);
                 if (index >= 0) {
-                    this.selectedFinal = this.filteredData[index].value;
+                    this.selectedFinal = this.filteredData[index];
                     this.$nextTick(() => {
                         $(this.$el).find(".dropdown-menu li."+this.btnstyle+" a").focus()
                     });
