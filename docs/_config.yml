@@ -1,0 +1,5 @@
+theme: jekyll-theme-cayman
+title: Vue-Bootstrap-Select
+description: A dropdown select component, that allows for single and multiple selection as well as filtering.
+show_downloads: true
+google_analytics: UA-37288388-20
