@@ -1,4 +1,4 @@
-# vue-bootstrap-select
+# Vue-Bootstrap-Select
 
 vue-bootstrap-select - A dropdown select component, that allows for single and multiple selection as well as filtering, for vue.js.
 
@@ -36,11 +36,11 @@ TODO UPDATE CHANGELOG
 ## Requirements
 
 * Vue 2.* (tested with 2.3.3)
-* Bootstrap 4 css
+* Bootstrap 4
 
 ## Installation
 
-Install the vue-bootstrap-table [package](https://www.npmjs.org/package/vue-bootstrap-select) package using [npm](https://www.npmjs.com/):
+Install the vue-bootstrap-select [package](https://www.npmjs.org/package/vue-bootstrap-select) package using [npm](https://www.npmjs.com/):
 
 	npm install vue-bootstrap-select
 
