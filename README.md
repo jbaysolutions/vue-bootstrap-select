@@ -1,10 +1,10 @@
-# vue-bootstrap-select
+# Vue-Bootstrap-Select [WEB SITE](https://jbaysolutions.github.io/vue-bootstrap-select/)
 
 vue-bootstrap-select - A dropdown select component, that allows for single and multiple selection as well as filtering, for vue.js.
 
 ### Version : 0.0.1 - Beta version 
 
-### [WEB SITE](https://jbaysolutions.github.io/vue-bootstrap-select/)
+Visit our [Web Site](https://jbaysolutions.github.io/vue-bootstrap-select/) for examples, documentation and other information regarding Vue-Bootstrap-Select
 
 ## Installation
 
